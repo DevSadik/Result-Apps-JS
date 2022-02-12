@@ -91,7 +91,7 @@ function AllStudentData() {
                 
                 <td>
                     <button onclick="StudentDataView(${index})" data-bs-toggle="modal" data-bs-target="#single-student-data" class="btn btn-info btn-sm">View</button>
-                    <button onclick="StudentDataClear(${index})" class="btn btn-danger btn-sm">Delete</button>
+                    <button onclick="StudentDataClear(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger btn-sm">Delete</button>
                 </td>
         </tr>
         `
@@ -100,16 +100,25 @@ function AllStudentData() {
     student_result_data.innerHTML = data;
 };
 
+// delete elements 
+
+const deletebtn = document.getElementById('delete-btn')
 // clear student data
 
 function StudentDataClear( id ){
-      
-    let dataStore = dataGet('student_data');
-    dataStore.splice(id, 1);
-
-     dataSend('student_data' , dataStore);
-     AllStudentData() ;
     
+        deletebtn.addEventListener('click', function () {
+            let dataStore = dataGet('student_data');
+            dataStore.splice(id, 1);
+
+            dataSend('student_data' , dataStore);
+            AllStudentData() ;
+
+            deletebtn.re
+
+        });
+
+
 }
 
 // view student data
@@ -178,8 +187,8 @@ function StudentDataView(id) {
                                 <td>4</td>
                                 <td>Science</td>
                                 <td>${dataStore[id].sci}</td>
-                                <td>${result.numberCal(dataStore[id].sci)}+</td>
-                                <td>${result.gpaCal(dataStore[id].sci)}+</td>
+                                <td>${result.numberCal(dataStore[id].sci)}</td>
+                                <td>${result.gpaCal(dataStore[id].sci)}</td>
                                 
                             </tr>
                             <tr>
